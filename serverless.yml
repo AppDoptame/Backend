@@ -1,0 +1,72 @@
+service: BackEnd
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: python3.9
+  stage: ${opt:stage, 'dev'}
+  httpApi:
+    cors: true
+  environment:
+    userPoolId: {Ref: UserPool}
+    clientId: {Ref: UserClient}
+
+functions:
+  hello:
+    handler: handler.hello
+    events:
+      - httpApi:
+          path: /
+          method: get
+
+  
+
+resources:
+  Resources:
+    UserPool:
+      Type: AWS::Cognito::UserPool
+      Properties:
+        UserPoolName: AppDoptame-UserPool-${self:provider.stage}
+        EmailConfiguration:
+          EmailSendingAccount: COGNITO_DEFAULT
+        Policies:
+          PasswordPolicy:
+            MinimumLength: 6
+            RequireLowercase: true
+            RequireUppercase: true
+            RequireSymbols: true
+        AutoVerifiedAttributes:
+          - email
+    
+    UserClient:
+      Type: AWS::Cognito::UserPoolClient
+      Properties:
+        ClientName: AppDoptame-UserClient-${self:provider.stage}
+        GenerateSecret: false
+        UserPoolId: { Ref: UserPool }
+        TokenValidityUnits:
+          AccessToken: hours
+          IdToken: hours
+          RefreshToken: hours
+        AccessTokenValidity: 3
+        IdTokenValidity: 3
+        RefreshTokenValidity: 3
+        ExplicitAuthFlows:
+          - "ADMIN_NO_SRP_AUTH"
+
+    AppDoptamePetsBucket:
+      Type: AWS::S3::Bucket
+      Properties:
+        BucketName: AppDoptame-PetsBucket-${self:provider.stage}
+
+    PetsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: AppDoptame-PetsTable-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
