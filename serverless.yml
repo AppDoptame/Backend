@@ -1,4 +1,4 @@
-service: BackEnd
+service: Backend
 frameworkVersion: '3'
 
 provider:
@@ -10,16 +10,59 @@ provider:
   environment:
     userPoolId: {Ref: UserPool}
     clientId: {Ref: UserClient}
+    petTable: {Ref: PetsTable}
+    postsTable: {Ref: PostsTable}
+    commentsTable: {Ref: CommentsTable}
+  iam:
+    role:
+        statements:
+          - Effect: Allow
+            Action:
+              - cognito-idp:*
+            Resource:
+              - !Sub "arn:aws:cognito-idp:${AWS::Region}:${AWS::AccountId}:userpool/${UserPool}"
+          - Effect: Allow
+            Action: 
+              - dynamodb:PutItem
+            Resource: { "Fn::GetAtt" : ["PetsTable", "Arn"]  }
+          - Effect: Allow
+            Action: 
+              - dynamodb:PutItem
+            Resource: { "Fn::GetAtt" : ["PostsTable", "Arn"]  }
+          - Effect: Allow
+            Action: 
+              - dynamodb:PutItem
+            Resource: { "Fn::GetAtt" : ["CommentsTable", "Arn"]  }
 
 functions:
-  hello:
-    handler: handler.hello
+  signUp:
+    handler: src/auth/sign_up.sign_up
     events:
       - httpApi:
-          path: /
-          method: get
+          path: /sign-up
+          method: post
+
+  signIn:
+    handler: src/auth/sign_in.sign_in
+    events:
+      - httpApi:
+          path: /sign-in
+          method: post
 
   
+  confirmSignUp:
+    handler: src/auth/confirm_sign_up.confirm_sign_up
+    events:
+      - httpApi:
+          path: /confirm-sign-up
+          method: post
+  
+  createPet:
+    handler: src/pets/create_pet.create_pet
+    events:
+      - httpApi:
+          path: /create-pet
+          method: post
 
 resources:
   Resources:
@@ -57,12 +100,36 @@ resources:
     AppDoptamePetsBucket:
       Type: AWS::S3::Bucket
       Properties:
-        BucketName: AppDoptame-PetsBucket-${self:provider.stage}
+        BucketName: appdoptame-pets-bucket-${self:provider.stage}
 
     PetsTable:
       Type: AWS::DynamoDB::Table
       Properties:
         TableName: AppDoptame-PetsTable-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+
+    PostsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: AppDoptame-PostsTable-${self:provider.stage}
+        BillingMode: PAY_PER_REQUEST
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+
+    CommentsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: AppDoptame-CommentsTable-${self:provider.stage}
         BillingMode: PAY_PER_REQUEST
         AttributeDefinitions:
           - AttributeName: id
