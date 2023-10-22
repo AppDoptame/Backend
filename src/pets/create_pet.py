@@ -23,8 +23,13 @@ def create_pet(event, context):
     age = body["age"]
     vaccines = body["vaccines"]
     race = body["race"]
-    # images = event.get("files", {})
-    # print(images)
+    sex = body["sex"]
+    size = body["size"]
+    sterilized = body["sterilized"]
+    images = body["images"]
+    adopted = "false"
+    city = "Medellín"
+    department = "Antioquia"
 
     # Genera un ID único para la mascota
     pet_id = str(uuid.uuid4())
@@ -36,7 +41,14 @@ def create_pet(event, context):
     'name': {'S': name},
     'age': {'N': str(age)},
     'vaccines': {'SS': vaccines}, 
-    'race': {'S': race}
+    'race': {'S': race},
+    'adopted': {'S': adopted},
+    'sex': {'S': sex},
+    'size': {'S': size},
+    'sterilized': {'S': sterilized},
+    'images': {'SS': images},
+    'city': {'S': city},
+    'department': {'S': department},
 }
 
     try:

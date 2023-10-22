@@ -25,10 +25,12 @@ provider:
           - Effect: Allow
             Action: 
               - dynamodb:PutItem
+              - dynamodb:Scan
             Resource: { "Fn::GetAtt" : ["PetsTable", "Arn"]  }
           - Effect: Allow
             Action: 
               - dynamodb:PutItem
+              - dynamodb:Scan
             Resource: { "Fn::GetAtt" : ["PostsTable", "Arn"]  }
           - Effect: Allow
             Action: 
@@ -70,12 +72,33 @@ functions:
           path: /create-pet
           method: post
 
+  getPetByEmail:
+    handler: src/pets/get_pets_by_email.get_pets_by_email
+    events:
+      - httpApi:
+          path: /get-pets-by-email/{email}
+          method: get
+  
+  getAllPets:
+    handler: src/pets/get_all_pets.get_all_pets
+    events:
+      - httpApi:
+          path: /get-all-pets
+          method: get
+
   createPost:
     handler: src/posts/create_post.create_post
     events:
       - httpApi:
           path: /create-post
           method: post
+  
+  getAllPosts:
+    handler: src/posts/get_all_posts.get_all_posts
+    events:
+      - httpApi:
+          path: /get-all-posts
+          method: get
 
   uploadImages:
     handler: src/posts/upload_images.upload_images
@@ -130,9 +153,18 @@ resources:
         AttributeDefinitions:
           - AttributeName: id
             AttributeType: S
+          - AttributeName: email
+            AttributeType: S
         KeySchema:
           - AttributeName: id
             KeyType: HASH
+        GlobalSecondaryIndexes:
+          - IndexName: EmailIndex
+            KeySchema:
+              - AttributeName: email
+                KeyType: HASH
+            Projection:
+              ProjectionType: ALL
 
     PostsTable:
       Type: AWS::DynamoDB::Table
