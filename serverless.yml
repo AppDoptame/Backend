@@ -13,6 +13,7 @@ provider:
     petTable: {Ref: PetsTable}
     postsTable: {Ref: PostsTable}
     commentsTable: {Ref: CommentsTable}
+    petsBucket: {Ref: AppDoptamePetsBucket}
   iam:
     role:
         statements:
@@ -33,6 +34,11 @@ provider:
             Action: 
               - dynamodb:PutItem
             Resource: { "Fn::GetAtt" : ["CommentsTable", "Arn"]  }
+          - Effect: "Allow"
+            Action:
+              - s3:GetObject
+              - s3:PutObject
+            Resource: { "Fn::Join" : ["", ["arn:aws:s3:::", { "Ref" : "AppDoptamePetsBucket" }, "/*" ] ]  }
 
 functions:
   signUp:
@@ -62,6 +68,20 @@ functions:
     events:
       - httpApi:
           path: /create-pet
+          method: post
+
+  createPost:
+    handler: src/posts/create_post.create_post
+    events:
+      - httpApi:
+          path: /create-post
+          method: post
+
+  uploadImages:
+    handler: src/posts/upload_images.upload_images
+    events:
+      - httpApi:
+          path: /upload-images
           method: post
 
 resources:
@@ -137,3 +157,10 @@ resources:
         KeySchema:
           - AttributeName: id
             KeyType: HASH
+package:
+  individually: true
+  patterns:
+    - 'node_modules/**'
+
+plugins:
+  - serverless-offline

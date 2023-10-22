@@ -21,8 +21,10 @@ This template does not include any kind of persistence (database). For more adva
 ### Deployment
 
 ```
-$ serverless deploy
+$ serverless deploy --stage stage
 ```
+
+stages: prod | dev
 
 After deploying, you should see output similar to:
 

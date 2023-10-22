@@ -178,3 +178,5 @@ pyrightconfig.json
 .serverless
 
 # End of https://www.toptal.com/developers/gitignore/api/serverless,python
+
+node_modules
