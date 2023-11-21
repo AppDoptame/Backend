@@ -1,6 +1,7 @@
 import json
 import os
 import boto3
+from src.utils.functions import convert_to_json 
 
 # Obtén el nombre de la tabla desde la variable de entorno
 pet_table = os.environ['petTable']
@@ -25,14 +26,11 @@ def get_pets_by_email(event, context):
         # Los resultados del escaneo se encuentran en la propiedad 'Items' de la respuesta
         pets = response.get('Items', [])
 
-        # Formatea los resultados en un formato de respuesta JSON
-        response_data = {
-            'pets': pets
-        }
+        pets_json = [convert_to_json(item) for item in pets]
 
         return {
             "statusCode": 200,
-            "body": json.dumps(response_data)
+            "body": json.dumps(pets_json)
         }
 
     except Exception as e:

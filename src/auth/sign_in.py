@@ -26,7 +26,6 @@ def sign_in(event, context):
             'body': json.dumps({'message': str(e)})
         }
 
-    print(response["AuthenticationResult"])
     return {
         'statusCode': 200,
         'body': json.dumps(

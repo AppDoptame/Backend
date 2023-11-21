@@ -45,6 +45,7 @@ provider:
 functions:
   signUp:
     handler: src/auth/sign_up.sign_up
+    timeout: 30
     events:
       - httpApi:
           path: /sign-up
@@ -52,6 +53,7 @@ functions:
 
   signIn:
     handler: src/auth/sign_in.sign_in
+    timeout: 30
     events:
       - httpApi:
           path: /sign-in
@@ -60,6 +62,7 @@ functions:
   
   confirmSignUp:
     handler: src/auth/confirm_sign_up.confirm_sign_up
+    timeout: 30
     events:
       - httpApi:
           path: /confirm-sign-up
@@ -67,6 +70,7 @@ functions:
   
   createPet:
     handler: src/pets/create_pet.create_pet
+    timeout: 30
     events:
       - httpApi:
           path: /create-pet
@@ -74,6 +78,7 @@ functions:
 
   getPetByEmail:
     handler: src/pets/get_pets_by_email.get_pets_by_email
+    timeout: 30
     events:
       - httpApi:
           path: /get-pets-by-email/{email}
@@ -81,6 +86,7 @@ functions:
   
   getAllPets:
     handler: src/pets/get_all_pets.get_all_pets
+    timeout: 30
     events:
       - httpApi:
           path: /get-all-pets
@@ -88,6 +94,7 @@ functions:
 
   createPost:
     handler: src/posts/create_post.create_post
+    timeout: 30
     events:
       - httpApi:
           path: /create-post
@@ -95,6 +102,7 @@ functions:
   
   getAllPosts:
     handler: src/posts/get_all_posts.get_all_posts
+    timeout: 30
     events:
       - httpApi:
           path: /get-all-posts
@@ -102,9 +110,34 @@ functions:
 
   uploadImages:
     handler: src/posts/upload_images.upload_images
+    timeout: 30
     events:
       - httpApi:
           path: /upload-images
+          method: post
+  
+  # createAssitant:
+  #   handler: src/chat/creator.creator
+  #   timeout: 30
+  #   events:
+  #     - httpApi:
+  #         path: /create-assistant
+  #         method: get
+  
+  createThread:
+    handler: src/chat/thread.thread
+    timeout: 30
+    events:
+      - httpApi:
+          path: /create-thread
+          method: get
+          
+  addMessage:
+    handler: src/chat/add_message.add_message
+    timeout: 30
+    events:
+      - httpApi:
+          path: /add-message
           method: post
 
 resources:
@@ -194,5 +227,12 @@ package:
   patterns:
     - 'node_modules/**'
 
-plugins:
-  - serverless-offline
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    zip: true
+    layer: true
+
+# plugins:
+#   - serverless-offline
+#   - serverless-python-requirements

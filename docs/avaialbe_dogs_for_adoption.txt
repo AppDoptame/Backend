@@ -1,0 +1,242 @@
+[
+  {
+    "name": "Buddy",
+    "breed": "Golden Retriever",
+    "age": 3,
+    "size": "Large"
+  },
+  {
+    "name": "Daisy",
+    "breed": "Labrador Retriever",
+    "age": 2,
+    "size": "Large"
+  },
+  {
+    "name": "Max",
+    "breed": "German Shepherd",
+    "age": 4,
+    "size": "Large"
+  },
+  {
+    "name": "Bailey",
+    "breed": "Poodle",
+    "age": 5,
+    "size": "Medium"
+  },
+  {
+    "name": "Luna",
+    "breed": "Husky",
+    "age": 2,
+    "size": "Large"
+  },
+  {
+    "name": "Charlie",
+    "breed": "Bulldog",
+    "age": 3,
+    "size": "Medium"
+  },
+  {
+    "name": "Sadie",
+    "breed": "Beagle",
+    "age": 6,
+    "size": "Small"
+  },
+  {
+    "name": "Rocky",
+    "breed": "Boxer",
+    "age": 4,
+    "size": "Large"
+  },
+  {
+    "name": "Coco",
+    "breed": "Dachshund",
+    "age": 7,
+    "size": "Small"
+  },
+  {
+    "name": "Milo",
+    "breed": "Yorkshire Terrier",
+    "age": 1,
+    "size": "Small"
+  },
+  {
+    "name": "Bella",
+    "breed": "Chihuahua",
+    "age": 5,
+    "size": "Tiny"
+  },
+  {
+    "name": "Oliver",
+    "breed": "Shih Tzu",
+    "age": 2,
+    "size": "Small"
+  },
+  {
+    "name": "Ruby",
+    "breed": "Pug",
+    "age": 4,
+    "size": "Small"
+  },
+  {
+    "name": "Bear",
+    "breed": "Rottweiler",
+    "age": 3,
+    "size": "Large"
+  },
+  {
+    "name": "Lola",
+    "breed": "Bichon Frise",
+    "age": 6,
+    "size": "Small"
+  },
+  {
+    "name": "Maximus",
+    "breed": "Great Dane",
+    "age": 2,
+    "size": "X-Large"
+  },
+  {
+    "name": "Molly",
+    "breed": "Cocker Spaniel",
+    "age": 5,
+    "size": "Medium"
+  },
+  {
+    "name": "Rosie",
+    "breed": "Pomeranian",
+    "age": 3,
+    "size": "Tiny"
+  },
+  {
+    "name": "Cooper",
+    "breed": "Border Collie",
+    "age": 4,
+    "size": "Medium"
+  },
+  {
+    "name": "Lily",
+    "breed": "Dalmatian",
+    "age": 3,
+    "size": "Medium"
+  },
+ {
+    "name": "Bailey",
+    "breed": "Siberian Husky",
+    "age": 2,
+    "size": "Large"
+  },
+  {
+    "name": "Lucky",
+    "breed": "Shiba Inu",
+    "age": 3,
+    "size": "Medium"
+  },
+  {
+    "name": "Tucker",
+    "breed": "Basset Hound",
+    "age": 4,
+    "size": "Medium"
+  },
+  {
+    "name": "Zoe",
+    "breed": "Cavalier King Charles Spaniel",
+    "age": 5,
+    "size": "Small"
+  },
+  {
+    "name": "Harley",
+    "breed": "Doberman Pinscher",
+    "age": 3,
+    "size": "Large"
+  },
+  {
+    "name": "Mia",
+    "breed": "Maltese",
+    "age": 2,
+    "size": "Tiny"
+  },
+  {
+    "name": "Riley",
+    "breed": "Bernese Mountain Dog",
+    "age": 4,
+    "size": "X-Large"
+  },
+  {
+    "name": "Leo",
+    "breed": "Australian Shepherd",
+    "age": 2,
+    "size": "Medium"
+  },
+  {
+    "name": "Lucy",
+    "breed": "Corgi",
+    "age": 6,
+    "size": "Small"
+  },
+  {
+    "name": "Zeus",
+    "breed": "Saint Bernard",
+    "age": 4,
+    "size": "X-Large"
+  },
+  {
+    "name": "Sophie",
+    "breed": "French Bulldog",
+    "age": 2,
+    "size": "Small"
+  },
+  {
+    "name": "Oscar",
+    "breed": "Poodle",
+    "age": 3,
+    "size": "Medium"
+  },
+  {
+    "name": "Maddie",
+    "breed": "Chow Chow",
+    "age": 5,
+    "size": "Large"
+  },
+  {
+    "name": "Cooper",
+    "breed": "Border Collie",
+    "age": 4,
+    "size": "Medium"
+  },
+  {
+    "name": "Luna",
+    "breed": "Shih Tzu",
+    "age": 3,
+    "size": "Small"
+  },
+  {
+    "name": "Hank",
+    "breed": "Dachshund",
+    "age": 2,
+    "size": "Small"
+  },
+  {
+    "name": "Lola",
+    "breed": "Pomeranian",
+    "age": 4,
+    "size": "Tiny"
+  },
+  {
+    "name": "Milo",
+    "breed": "Australian Terrier",
+    "age": 6,
+    "size": "Small"
+  },
+  {
+    "name": "Coco",
+    "breed": "Pug",
+    "age": 3,
+    "size": "Small"
+  },
+  {
+    "name": "Duke",
+    "breed": "Bulldog",
+    "age": 2,
+    "size": "Medium"
+  }
+]
